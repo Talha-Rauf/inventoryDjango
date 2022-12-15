@@ -2,21 +2,14 @@ from django.db import models
 
 
 # Create your models here.
-class Inventory(models.Model):
-    inv_name = models.CharField(max_length=264, unique=False)
-
-    def __str__(self):
-        return self.inv_name
-
-
 class User(models.Model):
-    userKey = models.ForeignKey(Inventory, on_delete=models.CASCADE)
-    name = models.CharField(max_length=264, unique=False)
+    first_name = models.CharField(max_length=128)
+    second_name = models.CharField(max_length=128)
     email = models.EmailField(max_length=264, unique=True)
-    url = models.URLField(unique=True)
+    company = models.CharField(max_length=264)
 
     def __str__(self):
-        return self.name
+        return self.first_name
 
 
 class AccessRecord(models.Model):

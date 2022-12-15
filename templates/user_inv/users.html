@@ -31,7 +31,7 @@
   <div class="Container container-sm text-center">
     <div class="table-responsive-sm">
 
-      {% if user_inventory %}
+      {% if users %}
       <table class="table table-sm table-bordered">
 
         <thead class="thead-dark">
@@ -44,11 +44,11 @@
 
         <tbody>
 
-        {% for uss in user_inventory %}
+        {% for uss in users %}
 
           <tr>
-            <td>{{ forloop.counter }}</td>
-            <td>{{ uss.name }}</td>
+            <td></td>
+            <td>{{ uss.first_name }} {{ uss.second_name }}</td>
             <td>
               <button type="submit" id="viewBtn" class="btn btn-primary mr-2">View</button>
               <button type="submit" id="editBtn" class="btn btn-primary btn-dark mr-2">Edit</button>
@@ -69,4 +69,15 @@
   </div>
 
 </body>
+
+<footer>
+
+    <div class="jumbotron">
+      <p>Author: Talha Rauf</p>
+      <p><a href="https://github.com/Talha-Rauf">--> GitHub Link <--</a></p>
+      <p>...</p>
+    </div>
+
+</footer>
+
 </html>

@@ -8,36 +8,28 @@ django.setup()
 
 # Fake POP Script
 import random
-from myApp.models import AccessRecord, User, Inventory
+from myApp.models import AccessRecord, User
 from faker import Faker
-
 fakegen = Faker()
-topics = ['Max', 'Bob', 'Sam', 'John']
-
-
-def add_Inv():
-    # t = Inventory.objects.create('User Inventory')[0]
-
-    t = Inventory.objects.get_or_create(inv_name=random.choice(topics))[0]
-    # [0] means the returning parameter is a tuple, so we grab the first object
-    t.save()
-    return t
 
 
 def populate(n=5):
     for entry in range(n):
-        # get the topic or the entry
-        inv = add_Inv()
+        # get the user's name or the first entry
+        fake_name = fakegen.name().split()
+        first = fake_name[0]
+        second = fake_name[1]
 
         # create the fake data for that entry
-        fake_url = fakegen.url()
-
-        fake_name = fakegen.company()
+        fake_company = fakegen.company()
         fake_email = fakegen.email()
         fake_date = fakegen.date()
 
         # create the new inventory entry
-        user = User.objects.get_or_create(userKey=inv, name=fake_name, url=fake_url, email=fake_email)[0]
+        user = User.objects.get_or_create(first_name=first,
+                                          second_name=second,
+                                          company=fake_company,
+                                          email=fake_email)[0]
 
         # create fake access record for that user
         acc_rec = AccessRecord.objects.get_or_create(name=user, date=fake_date)[0]

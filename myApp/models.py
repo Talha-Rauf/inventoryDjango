@@ -9,11 +9,10 @@ class Inventory(models.Model):
         return self.inv_name
 
 
-class Users(models.Model):
+class User(models.Model):
     userKey = models.ForeignKey(Inventory, on_delete=models.CASCADE)
     name = models.CharField(max_length=264, unique=False)
     email = models.EmailField(max_length=264, unique=True)
-    age = models.IntegerField(unique=False)
     url = models.URLField(unique=True)
 
     def __str__(self):
@@ -21,7 +20,7 @@ class Users(models.Model):
 
 
 class AccessRecord(models.Model):
-    name = models.ForeignKey(Users, on_delete=models.CASCADE)
+    name = models.ForeignKey(User, on_delete=models.CASCADE)
     date = models.DateField()
 
     def __str__(self):

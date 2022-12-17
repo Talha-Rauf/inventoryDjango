@@ -47,7 +47,7 @@
         {% for uss in users %}
 
           <tr>
-            <td></td>
+            <td>{{ forloop.counter }}</td>
             <td>{{ uss.first_name }} {{ uss.second_name }}</td>
             <td>
               <button type="submit" id="viewBtn" class="btn btn-primary mr-2">View</button>

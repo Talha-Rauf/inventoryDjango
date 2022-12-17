@@ -22,7 +22,7 @@ h3{
 form{
     width: 100%;
     display: inline-block;
-    margin: 20px;
+    margin: 10px;
 }
 footer{
     margin-top: 3%;
@@ -39,3 +39,4 @@ td{
     background-color: lightgray;
     text-align: center;
 }
+

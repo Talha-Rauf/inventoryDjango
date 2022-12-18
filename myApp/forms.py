@@ -1,9 +1,15 @@
 from django import forms
+from django.core import validators
+from myApp.models import User
 
 
-class FormName(forms.Form):
-    name = forms.CharField()
-    email = forms.EmailField()
-    company = forms.CharField()
-    # text = forms.CharField(widget=forms.Textarea)
+# def checkForValidName(value):
+#    if value == int:
+#        raise forms.ValidationError("NAME NEEDS TO BE LETTERS")
 
+
+class NewUser(forms.ModelForm):
+
+    class Meta:
+        model = User
+        fields = '__all__'

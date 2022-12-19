@@ -1,23 +1,37 @@
 from django.shortcuts import render
-# from django.http import HttpResponse
+from django.utils import timezone
 from myApp.models import User, AccessRecord
+from django.views.generic.base import TemplateView
+from django.views.generic import DetailView
 from . import forms
 
 
 # Create your views here.
-def index(request):
+class HomePageView(TemplateView):
 
-    if request.method == 'GET':
-        return users(request)
-
-    return render(request, 'user_inv/index.html')
+    template_name = "user_inv/index.html"
 
 
-def users(request):
-    user_list = User.objects.order_by('first_name')
-    user_dict = {'users': user_list}
+class UsersInventoryView(TemplateView):
 
-    return render(request, 'user_inv/users.html', context=user_dict)
+    template_name = "user_inv/users.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['user_dict'] = User.objects.all().order_by('first_name')
+        return context
+
+
+class UserDetailedView(DetailView):
+    
+    queryset = User.objects.all()
+
+    def get_object(self):
+        obj = super().get_object()
+        # Record the last accessed date
+        obj.last_accessed = timezone.now()
+        obj.save()
+        return obj
 
 
 def per_User(request):

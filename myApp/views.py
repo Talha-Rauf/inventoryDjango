@@ -23,7 +23,7 @@ class UsersInventoryView(TemplateView):
 
 
 class UserDetailedView(DetailView):
-    
+
     queryset = User.objects.all()
 
     def get_object(self):

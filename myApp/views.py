@@ -29,13 +29,6 @@ class UserDetailedView(DetailView):
     model = User
 
 
-def per_User(request):
-    user_list = User.objects.order_by('first_name')
-    user_dict = {'users': user_list}
-
-    return render(request, 'user_inv/per_user.html', context=user_dict)
-
-
 def add_user(request):
     form = forms.NewUser()
 
@@ -48,7 +41,7 @@ def add_user(request):
             # print("NAME: " + form.cleaned_data['first_name' + ' ' + 'second_name'])
             # print("EMAIL: " + form.cleaned_data['email'])
             # print("COMPANY: " + form.cleaned_data['company'])
-            return index(request)
+            return UsersInventoryView
         else:
             print("ERROR FORM INVALID")
 

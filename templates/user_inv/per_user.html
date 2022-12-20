@@ -22,19 +22,19 @@
 
   <div class="Container container-sm text-center">
 
-    <button type="submit" id="cancelBtn" class="btn btn-primary">Edit</button>
-    <button type="submit" id="submitBtn" class="btn btn-primary">BACK</button>
+    <button type="submit" id="editBtn" class="btn btn-primary">Edit</button>
+    <a href="{% url 'myApp:users-inventory' %}"><button type="submit" id="submitBtn" class="btn btn-primary">BACK</button></a>
 
   </div>
 </div>
 
-    {% if users %}
+    {% if user %}
   <div class="Container container-sm">
 
       <ol>
-          <li>Name: </li>
-          <li>Email: </li>
-          <li>Company: </li>
+          <li>Name: {{ user.first_name }} {{ user.second_name }}</li>
+          <li>Email: {{ user.email }}</li>
+          <li>Company: {{ user.company }}</li>
       </ol>
 
   </div>

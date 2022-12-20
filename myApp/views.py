@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.utils import timezone
 from myApp.models import User, AccessRecord
 from django.views.generic.base import TemplateView
@@ -24,14 +24,9 @@ class UsersInventoryView(TemplateView):
 
 class UserDetailedView(DetailView):
 
-    queryset = User.objects.all()
-
-    def get_object(self):
-        obj = super().get_object()
-        # Record the last accessed date
-        obj.last_accessed = timezone.now()
-        obj.save()
-        return obj
+    template_name = 'user_inv/per_user.html'
+    context_object_name = 'user'
+    model = User
 
 
 def per_User(request):

@@ -1,48 +1,36 @@
-from django.shortcuts import render, get_object_or_404
-from django.utils import timezone
-from myApp.models import User, AccessRecord
 from django.views.generic.base import TemplateView
+from django.views.generic.edit import CreateView
 from django.views.generic import DetailView
-from . import forms
+from . import forms, models
 
 
 # Create your views here.
 class HomePageView(TemplateView):
 
-    template_name = "../templates/index.html"
+    template_name = "index.html"
 
 
 class UsersInventoryView(TemplateView):
 
-    template_name = "../templates/users.html"
+    template_name = "users.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['user_dict'] = User.objects.all().order_by('first_name')
+        context['user_dict'] = models.User.objects.all().order_by('first_name')
         return context
 
 
 class UserDetailedView(DetailView):
 
-    template_name = '../templates/per_user.html'
+    model = models.User
+    template_name = 'per_user.html'
     context_object_name = 'user'
-    model = User
 
 
-def add_user(request):
-    form = forms.NewUser()
+class AddNewUserView(CreateView):
 
-    if request.method == 'POST':
-        form = forms.NewUser(request.POST)
+    model = models.User
+    form_class = forms.NewUser
+    template_name = 'addUser.html'
+    success_url = '/users/'
 
-        if form.is_valid():
-            form.save(commit=True)
-            print("VALIDATION SUCCESSFUL!")
-            # print("NAME: " + form.cleaned_data['first_name' + ' ' + 'second_name'])
-            # print("EMAIL: " + form.cleaned_data['email'])
-            # print("COMPANY: " + form.cleaned_data['company'])
-            return UsersInventoryView
-        else:
-            print("ERROR FORM INVALID")
-
-    return render(request, '../templates/addUser.html', {'form': form})

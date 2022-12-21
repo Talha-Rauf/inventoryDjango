@@ -9,12 +9,12 @@ from . import forms
 # Create your views here.
 class HomePageView(TemplateView):
 
-    template_name = "user_inv/index.html"
+    template_name = "../templates/index.html"
 
 
 class UsersInventoryView(TemplateView):
 
-    template_name = "user_inv/users.html"
+    template_name = "../templates/users.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -24,7 +24,7 @@ class UsersInventoryView(TemplateView):
 
 class UserDetailedView(DetailView):
 
-    template_name = 'user_inv/per_user.html'
+    template_name = '../templates/per_user.html'
     context_object_name = 'user'
     model = User
 
@@ -45,4 +45,4 @@ def add_user(request):
         else:
             print("ERROR FORM INVALID")
 
-    return render(request, 'user_inv/addUser.html', {'form': form})
+    return render(request, '../templates/addUser.html', {'form': form})

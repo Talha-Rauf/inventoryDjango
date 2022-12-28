@@ -11,7 +11,7 @@
 
   <div class="Container container-sm text-center">
 
-    <button type="submit" id="editBtn" class="btn btn-primary">Edit</button>
+    <a href="{% url 'myApp:edit-user-detail' user.pk %}"><button type="submit" id="editBtn" class="btn btn-primary">Edit</button></a>
     <a href="{% url 'myApp:users-inventory' %}"><button type="submit" id="submitBtn" class="btn btn-primary">BACK</button></a>
 
   </div>

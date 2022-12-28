@@ -16,8 +16,8 @@
         {% csrf_token %}
 
         <p>Are you sure you want to delete "{{ object }}"?</p>
-        <input type="submit" value="Confirm">
-        <a href="{% url 'myApp:users-inventory' %}"><button type="submit" id="userBtn" class="btn btn-primary">Cancel</button></a><p></p>
+        <input type="submit" value="Confirm"><p></p>
+        <a href="{% url 'myApp:users-inventory' %}">Cancel</a>
 
     </form>
 

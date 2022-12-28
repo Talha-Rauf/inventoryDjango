@@ -1,5 +1,5 @@
 from django.views.generic.base import TemplateView
-from django.views.generic.edit import CreateView, DeleteView
+from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.views.generic import DetailView
 from . import forms, models
 
@@ -28,6 +28,13 @@ class AddNewUserView(CreateView):
     model = models.User
     form_class = forms.NewUser
     template_name = 'addUser.html'
+    success_url = '/users/'
+
+
+class UpdateUserView(UpdateView):
+    model = models.User
+    fields = '__all__'
+    template_name = 'editUser.html'
     success_url = '/users/'
 
 
